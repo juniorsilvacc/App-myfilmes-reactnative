@@ -89,7 +89,7 @@ export default function App() {
             </View>
 
             <Text style={{color: "#FFF", fontSize: 25, fontWeight: "bold", marginLeft: 10, marginVertical: 10, }}>
-              Adicionado Recentemente
+              Adicionados Recentemente
             </Text>
 
             <View style={styles.slideView}>
@@ -112,10 +112,11 @@ export default function App() {
                 <View style={{marginTop: 10}}>
                   <Text style={styles.movieTitle}>{lista[activeIndex].title}</Text>
                   <Text style={styles.movieDesc}>{lista[activeIndex].text}</Text>        
+                  <Text style={styles.movieRelease}>{lista[activeIndex].release}</Text>  
                 </View>
                 
-                <TouchableOpacity style={{marginRight: 15, marginTop: 10}}>
-                  <Icon name="queue" color="#131313" size={30} ></Icon>
+                <TouchableOpacity style={{marginRight: 25, marginTop: 10}}>
+                  <Icon name="queue" color="#131313" size={25} ></Icon>
               </TouchableOpacity>
             </View>
 
@@ -179,9 +180,9 @@ const styles = StyleSheet.create({
   carouselText:{
     padding: 15,
     color: "#FFF",
-    position: "absolute",
+    position: "relative",
     bottom: 10,
-    left: 2,
+    textAlign: "center",
     fontWeight: "bold"
   },
   carouselIcon: {
@@ -196,7 +197,8 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    paddingLeft: 10
   },
   movieTitle: {
     paddingLeft: 15,
@@ -209,6 +211,12 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     color: "#131313",
     fontSize: 15,
-    fontWeight: "bold"
+    fontWeight: "400"
+  },
+  movieRelease:{
+    marginTop: 10,
+    marginLeft: 15,
+    fontWeight: "bold",
+    color: "red"
   }
 });
