@@ -51,6 +51,7 @@ export default function App() {
   ]);
 
   const [background, setBackground] = useState(lista[0].img);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const _renderItem = ({ item, index }) => {
     return(
@@ -59,7 +60,9 @@ export default function App() {
           <Image
             source={{uri: item.img}}
             style={styles.carouselImg}
-          />  
+          />
+          <Text style={styles.carouselText}>{item.title}</Text>
+          <Icon name="play-circle-outline" size={30} color="#FFF" style={styles.carouselIcon} />
         </TouchableOpacity>
       </View>
     );
@@ -98,8 +101,22 @@ export default function App() {
                 sliderWidth={screenWidth}
                 itemWidth={200}
                 inactiveSlideOpacity={0.5}
-
+                onSnapToItem={ (index) => {
+                  setBackground(lista[index].img);
+                  setActiveIndex(index);
+                }}
               />
+            </View>
+
+            <View style={styles.moreInfo}>
+                <View style={{marginTop: 10}}>
+                  <Text style={styles.movieTitle}>{lista[activeIndex].title}</Text>
+                  <Text style={styles.movieDesc}>{lista[activeIndex].text}</Text>        
+                </View>
+                
+                <TouchableOpacity style={{marginRight: 15, marginTop: 10}}>
+                  <Icon name="queue" color="#131313" size={30} ></Icon>
+              </TouchableOpacity>
             </View>
 
           </ImageBackground>
@@ -147,5 +164,51 @@ const styles = StyleSheet.create({
     height: 350,
     justifyContent: "center",
     alignItems: "center"
+  },
+  carousel:{
+    flex: 1,
+    overflow: "visible",
+  },
+  carouselImg:{
+    alignSelf: "center",
+    width: 200,
+    height: 300,
+    borderRadius: 12,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+  },
+  carouselText:{
+    padding: 15,
+    color: "#FFF",
+    position: "absolute",
+    bottom: 10,
+    left: 2,
+    fontWeight: "bold"
+  },
+  carouselIcon: {
+    position: "absolute",
+    top: 10,
+    right: 10
+  },
+  moreInfo:{
+    backgroundColor: "#FFF",
+    width: screenWidth,
+    height: screenHeight,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    flexDirection: "row",
+    justifyContent: "space-around"
+  },
+  movieTitle: {
+    paddingLeft: 15,
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#131313",
+    marginBottom: 5
+  },
+  movieDesc: {
+    paddingLeft: 15,
+    color: "#131313",
+    fontSize: 15,
+    fontWeight: "bold"
   }
 });
